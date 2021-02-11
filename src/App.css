@@ -1,1 +1,49 @@
 /* Other rules */
+.App {
+  font-family: "Roboto", sans-serif;
+}
+.container {
+  width: 1000px;
+  margin: 100px auto;
+}
+
+/*------------------------------------------------------*/
+/*-------------------------OFFERS-----------------------*/
+/*------------------------------------------------------*/
+.home .offers {
+  display: flex;
+  flex-wrap: wrap;
+}
+.home .offers .offer {
+  padding: 5px;
+  box-sizing: border-box;
+  color: #000000;
+}
+.home .offers .offer p {
+  outline: none;
+  text-decoration: none;
+}
+.home .offers .offer .offer--product-picture img {
+  width: 235px;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+/*------------------------------------------------------*/
+/*-------------------------OFFER-----------------------*/
+/*------------------------------------------------------*/
+.product {
+  display: flex;
+  justify-content: space-around;
+  /* align-items: center; */
+}
+.product .offer .offer-picture img {
+  width: 500px;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.product .offer offer-cart {
+}
