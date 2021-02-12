@@ -30,7 +30,6 @@ const Header = ({ userToken, setUser }) => {
             </Link>
           </>
         )}
-
         {userToken && (
           <button
             onClick={handleLogout}

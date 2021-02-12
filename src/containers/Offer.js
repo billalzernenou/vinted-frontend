@@ -24,7 +24,7 @@ const Offer = () => {
       }
     };
     fetchData();
-  }, [id]);
+  }, [id, data]);
 
   return isLoading ? (
     "is Loading"
