@@ -6,6 +6,7 @@ const Login = ({ setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
+  const [displayError, setDisplayError] = useState();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -28,11 +29,14 @@ const Login = ({ setUser }) => {
         setUser(response.data.token);
 
         history.push("/");
-      } else alert("unauthorized");
+      } else {
+        setDisplayError("something went wrong, please try again");
+      }
     } catch (error) {
       console.log({ message: error });
       if (error.response) {
         console.log(error.response.data);
+        setDisplayError("something went wrong, please try again");
       }
     }
   };
@@ -46,7 +50,7 @@ const Login = ({ setUser }) => {
           name="email"
           value={email}
           onChange={handleEmailChange}
-          required="true"
+          required
         />
         <label>Password</label>
         <input
@@ -54,10 +58,16 @@ const Login = ({ setUser }) => {
           name="password"
           value={password}
           onChange={handlePasswordChange}
-          required="true"
+          required
         />
         <input type="submit" value="Se connecter" />
       </form>
+
+      {displayError && (
+        <div className="display-error">
+          Le nom d'utilisateur ou le mot de passe saisi est incorrect ?
+        </div>
+      )}
     </div>
   );
 };

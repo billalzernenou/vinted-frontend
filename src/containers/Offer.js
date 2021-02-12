@@ -18,6 +18,7 @@ const Offer = () => {
 
         setData(response.data);
         setIsLoading(false);
+        console.log(data);
       } catch (error) {
         console.log({ message: error });
       }
@@ -43,7 +44,7 @@ const Offer = () => {
             <div className="offer-details">
               {data.product_details.map((item, index) => {
                 return (
-                  <table>
+                  <table key="index">
                     <tr className="details-line">
                       <td className="detail-name">{Object.keys(item)[0]}</td>
                       <td className="detail-value">
@@ -59,7 +60,7 @@ const Offer = () => {
             <div className="publisher">
               <div className="offer-name">{data.product_name} </div>
               <div className="publisher-avatar">
-                {!data.owner.account.avatar ? (
+                {data.owner.account.avatar ? (
                   <img src={data.owner.account.avatar} alt="Avatar"></img>
                 ) : (
                   <div className="publisher-avatar-name">

@@ -215,3 +215,6 @@
   width: 300px;
   margin-bottom: 20px;
 }
+.login-form .display-error {
+  color: red;
+}
