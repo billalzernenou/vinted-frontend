@@ -1,7 +1,30 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-const Home = ({ data, setData }) => {
-  return (
+const Home = () => {
+  const [data, setData] = useState([]);
+  // const [offer, setOffer] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          "https://vinted-server.herokuapp.com/offers"
+        );
+        setData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log({ message: error });
+      }
+    };
+    fetchData();
+  }, []);
+
+  return isLoading ? (
+    "is Loading"
+  ) : (
     <div className="container home">
       <div className="offers">
         {data.offers.map((item, index) => {
@@ -12,7 +35,7 @@ const Home = ({ data, setData }) => {
               <div className="offer">
                 <div className="offer--product-picture">
                   <img
-                    src={item.product_pictures[0].url}
+                    src={item.product_image.secure_url}
                     alt={`vètement-${item.product_name}`}
                   />
                 </div>

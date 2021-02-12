@@ -1,28 +1,81 @@
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
-const Offer = ({ data, setData }) => {
+const Offer = () => {
   const { id } = useParams();
 
-  const offer = data.offers.find((item) => {
-    console.log(item);
-    return item._id === id;
-  });
-  console.log(offer);
-  return (
-    <div className="product container">
-      <div className="offer-picture">
-        <img
-          src={offer.product_pictures[0].url}
-          alt={`vetement-${offer.product_name}`}
-        />
-      </div>
-      <div className="offer-cart"></div>
-      <div className="offer-cart-cart">
-        <div className="offer-name">{offer.product_name} </div>
-        <div className="offer-price">{offer.product_price} €</div>
-        <div className="offer-brand">{offer.product_details[2].COULEUR} </div>
-        <div className="offer-size">{offer.product_details[3].EMPLACEMENT}</div>
-        <div className="offer-condition">{offer.product_details[1].ÉTAT} </div>
+  const [data, setData] = useState([]);
+  // const [offer, setOffer] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(
+          `https://vinted-server.herokuapp.com/offer/${id}`
+        );
+
+        setData(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log({ message: error });
+      }
+    };
+    fetchData();
+  }, [id]);
+
+  return isLoading ? (
+    "is Loading"
+  ) : (
+    <div className="offer-container">
+      <div className="product container">
+        <div className="offer-picture">
+          <img
+            src={data.product_image.secure_url}
+            alt={`vetement-${data.product_name}`}
+          />
+        </div>
+        <div className="offer-cart">
+          <div className="offer-cart-cart">
+            <div className="offer-price">{data.product_price} €</div>
+            <div className="offer-name">{data.product_name} </div>
+            <div className="offer-details">
+              {data.product_details.map((item, index) => {
+                return (
+                  <table>
+                    <tr className="details-line">
+                      <td className="detail-name">{Object.keys(item)[0]}</td>
+                      <td className="detail-value">
+                        {item[Object.keys(item)[0]]}
+                      </td>
+                    </tr>
+                  </table>
+                );
+              })}
+            </div>
+          </div>
+          <div>
+            <div className="publisher">
+              <div className="offer-name">{data.product_name} </div>
+              <div className="publisher-avatar">
+                {!data.owner.account.avatar ? (
+                  <img src={data.owner.account.avatar} alt="Avatar"></img>
+                ) : (
+                  <div className="publisher-avatar-name">
+                    {data.owner.account.username.charAt(0).toUpperCase()}
+                  </div>
+                )}
+                <div className="publisher-username">
+                  {data.owner.account.username}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="cart-validate">
+            <button className="validate-button">Acheter</button>
+          </div>
+        </div>
       </div>
     </div>
   );
