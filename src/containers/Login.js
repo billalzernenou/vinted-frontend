@@ -31,7 +31,9 @@ const Login = ({ setUser }) => {
       } else alert("unauthorized");
     } catch (error) {
       console.log({ message: error });
-      alert("unauthorized");
+      if (error.response) {
+        console.log(error.response.data);
+      }
     }
   };
 
@@ -46,7 +48,6 @@ const Login = ({ setUser }) => {
           onChange={handleEmailChange}
           required="true"
         />
-
         <label>Password</label>
         <input
           type="password"

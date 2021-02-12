@@ -9,7 +9,7 @@ import { useState } from "react";
 import Coockies from "js-cookie";
 
 function App() {
-  const [userToken, setUserToken] = useState(Coockies.get("userToken"));
+  const [userToken, setUserToken] = useState(Coockies.get("userToken") || null);
 
   const setUser = (token) => {
     if (token) {
@@ -34,7 +34,7 @@ function App() {
             <Login setUser={setUser} />
           </Route>
           <Route path="/Signup">
-            <Signup />
+            <Signup setUser={setUser} />
           </Route>
           <Route path="/">
             <Home />
