@@ -18,13 +18,12 @@ const Offer = () => {
 
         setData(response.data);
         setIsLoading(false);
-        console.log(data);
       } catch (error) {
         console.log({ message: error });
       }
     };
     fetchData();
-  }, [id, data]);
+  }, [id]);
 
   return isLoading ? (
     "is Loading"
@@ -44,13 +43,15 @@ const Offer = () => {
             <div className="offer-details">
               {data.product_details.map((item, index) => {
                 return (
-                  <table key="index">
-                    <tr className="details-line">
-                      <td className="detail-name">{Object.keys(item)[0]}</td>
-                      <td className="detail-value">
-                        {item[Object.keys(item)[0]]}
-                      </td>
-                    </tr>
+                  <table key={`offer-${Object.keys(item)[0]}}`}>
+                    <tbody>
+                      <tr className="details-line">
+                        <td className="detail-name">{Object.keys(item)[0]}</td>
+                        <td className="detail-value">
+                          {item[Object.keys(item)[0]]}
+                        </td>
+                      </tr>
+                    </tbody>
                   </table>
                 );
               })}
