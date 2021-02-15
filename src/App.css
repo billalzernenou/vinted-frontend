@@ -3,8 +3,8 @@
   font-family: "Roboto", sans-serif;
 }
 .container {
-  width: 1200px;
-  margin: 100px auto;
+  width: 1280px;
+  margin: 20px auto;
 }
 /*------------------------------------------------------*/
 /*-------------------------HEADER-----------------------*/
@@ -54,8 +54,8 @@
   margin-right: 70px;
 }
 .header .header-buttons-container .explore-button {
-  background-color: #2cb1ba;
   color: #fff;
+  background-color: #2cb1ba;
 }
 
 /*------------------------------------------------------*/
@@ -75,16 +75,32 @@
   box-sizing: border-box;
   color: #000000;
   outline: none;
+  width: calc(100% / 4 - 10px);
 }
 .home .offers .offer a {
   outline: none;
 }
-.home .offers .offer .offer--product-picture img {
-  width: 235px;
+.home .offers .offer .offer-product-picture {
+}
+.home .offers .offer .offer-product-picture img {
+  width: 100%;
   height: 360px;
   object-fit: cover;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.home .offers .offer .offer-details {
+  color: #000000;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.home .offers .offer .offer-details .offer-product-price {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+.home .offers .offer .offer-details .offer-product-name {
+  color: #999;
+  font-size: 14px;
 }
 /*------------------------------------------------------*/
 /*-------------------------OFFER-----------------------*/
@@ -93,7 +109,6 @@
   flex: 1;
   background-color: #ebedee;
   padding-top: 50px;
-  padding-bottom: 300px;
   box-sizing: border-box;
 }
 .product {
@@ -217,4 +232,111 @@
 }
 .login-form .display-error {
   color: red;
+}
+
+/*------------------------------------------------------*/
+/*-------------------------SEARCH-----------------------*/
+/*------------------------------------------------------*/
+.search-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.search-container .search-input {
+  background-color: #f5f6f7;
+  border-radius: 5px;
+  height: 37px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 1px 10px;
+  width: 80%;
+  box-sizing: border-box;
+}
+.search-container .range-filter {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.search-container .input-search {
+  flex: 2;
+}
+.search-container .display-order {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 25px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2cb1ba;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 #2cb1ba;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.search-container .min-max-range {
+  background-color: #2cb1ba;
+  border-radius: 5px;
+  color: #fff;
+  padding: 5px;
+  box-sizing: border-box;
+
+  font-size: 15px;
 }
