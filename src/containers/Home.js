@@ -31,22 +31,41 @@ const Home = () => {
   return isLoading ? (
     "is Loading"
   ) : (
-    <div className="container home">
-      <Search
-        state={state}
-        setState={setState}
-        rangeFilter={rangeFilter}
-        setRangeFilter={setRangeFilter}
-        displayOrder={displayOrder}
-        setDisplayOrder={setDisplayOrder}
-        searchInput={searchInput}
-        setSearchInput={setSearchInput}
-      />
+    <div className="home">
+      <div className="container">
+        <Search
+          state={state}
+          setState={setState}
+          rangeFilter={rangeFilter}
+          setRangeFilter={setRangeFilter}
+          displayOrder={displayOrder}
+          setDisplayOrder={setDisplayOrder}
+          searchInput={searchInput}
+          setSearchInput={setSearchInput}
+        />
+      </div>
+      <Hero />
       {data.offers ? (
-        <div className="offers">
+        <div className=" container offers">
           {data.offers.map((item, index) => {
             return (
               <div className="offer" key={`offer${item._id}`}>
+                {/* publisher */}
+                <div className="publisher">
+                  <div className="publisher-avatar">
+                    {item.owner.account.avatar ? (
+                      <img src={item.owner.account.avatar} alt="Avatar"></img>
+                    ) : (
+                      <div className="publisher-avatar-name">
+                        {item.owner.account.username.charAt(0).toUpperCase()}
+                      </div>
+                    )}
+                    <div className="publisher-username">
+                      {item.owner.account.username}
+                    </div>
+                  </div>
+                </div>
+
                 <Link to={`/offer/${item._id}`}>
                   <div className="offer-product-picture">
                     <img

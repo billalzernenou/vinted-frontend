@@ -4,7 +4,7 @@ const Hero = () => {
     <div
       style={{
         backgroundImage: `url(${image})`,
-        height: "480px",
+        height: "465px",
         maxWidth: "100%",
         backgroundPositionX: "center",
         backgroundPositionY: "20%",

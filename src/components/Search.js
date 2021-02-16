@@ -35,20 +35,18 @@ const Search = ({
           placeholder="Recherche des articles"
         ></input>
       </div>
+      <div>Pris entre:</div>
       <div className="range-filter">
         <output
           style={{
             display: "flex",
             justifyContent: "space-around",
-            margin: "20px",
             fontSize: "15px",
             width: "100%",
           }}
           id="output"
         >
-          <div>Pris entre:</div>
           <div className="min-max-range"> {state.values[0].toFixed(0)} €</div>
-          <div className="min-max-range"> {state.values[1].toFixed(0)}€</div>
         </output>
         <div></div>
         <Range
@@ -93,6 +91,16 @@ const Search = ({
             />
           )}
         />
+        <output
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            fontSize: "15px",
+            width: "100%",
+          }}
+        >
+          <div className="min-max-range"> {state.values[1].toFixed(0)}€</div>
+        </output>
       </div>
 
       <div className="display-order">
