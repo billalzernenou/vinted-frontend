@@ -3,6 +3,8 @@ import { Range, getTrackBackground } from "react-range";
 const Search = ({
   state,
   setState,
+  rangeFilter,
+  setRangeFilter,
   displayOrder,
   setDisplayOrder,
   searchInput,
@@ -54,6 +56,7 @@ const Search = ({
           min={0}
           max={500}
           onChange={(values) => setState({ values })}
+          onFinalChange={(values) => setRangeFilter({ values })}
           values={state.values}
           renderTrack={({ props, children }) => (
             <div

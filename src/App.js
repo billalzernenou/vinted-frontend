@@ -28,6 +28,7 @@ function App() {
     <div className="App">
       <Router>
         <Header userToken={userToken} setUser={setUser} />
+
         <Switch>
           <Route path="/offer/:id">
             <Offer />

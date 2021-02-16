@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Search from "../components/Search";
+import Hero from "../components/Hero";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -10,13 +11,13 @@ const Home = () => {
   const [displayOrder, setDisplayOrder] = useState("asc");
   const [state, setState] = useState({ values: [0, 500] });
   const [searchInput, setSearchInput] = useState("");
-  const [rangeFilter, setRangeFilter] = useState("");
+  const [rangeFilter, setRangeFilter] = useState({ values: [0, 500] });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://vinted-server.herokuapp.com/offers?sort=price-${displayOrder}&priceMin=${state.values[0]}&priceMax=${state.values[1]}&title=${searchInput}`
+          `https://vinted-server.herokuapp.com/offers?sort=price-${displayOrder}&priceMin=${rangeFilter.values[0]}&priceMax=${rangeFilter.values[1]}&title=${searchInput}`
         );
         setData(response.data);
         setIsLoading(false);
@@ -25,7 +26,7 @@ const Home = () => {
       }
     };
     fetchData();
-  }, [displayOrder, state.values, searchInput]);
+  }, [displayOrder, rangeFilter.values, searchInput]);
 
   return isLoading ? (
     "is Loading"
