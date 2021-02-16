@@ -34,7 +34,7 @@ const Signup = ({ setUser }) => {
       console.log(response);
       if (response.data.token) {
         setUser(response.data.token);
-        history.push("/");
+        history.push("/publish");
       } else {
         alert("unauthorized");
       }

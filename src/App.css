@@ -3,7 +3,7 @@
   font-family: "Roboto", sans-serif;
 }
 .container {
-  width: 1280px;
+  max-width: 1280px;
   margin: 20px auto;
 }
 /*------------------------------------------------------*/
@@ -12,7 +12,7 @@
 
 .header {
   height: 60px;
-  width: 1280px;
+  max-width: 1280px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -64,6 +64,7 @@
 .home .offers {
   display: flex;
   flex-wrap: wrap;
+  box-sizing: border-box;
 }
 .home .offers a {
   display: flex;
@@ -75,7 +76,7 @@
   box-sizing: border-box;
   color: #000000;
   outline: none;
-  width: calc(100% / 4 - 10px);
+  width: calc(100% / 4 - 12px);
 }
 .home .offers .offer a {
   outline: none;
@@ -339,4 +340,29 @@ input:checked + .slider:before {
   box-sizing: border-box;
 
   font-size: 15px;
+}
+
+/*------------------------------------------------------*/
+/*-------------------------PUBLISH-----------------------*/
+/*------------------------------------------------------*/
+
+.publish-offer-form {
+  width: 50%;
+  margin: 50px auto;
+}
+.publish-offer-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+/*------------------------------------------------------*/
+/*-------------------------FOOTER-----------------------*/
+/*------------------------------------------------------*/
+
+.footer {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 650px;
 }

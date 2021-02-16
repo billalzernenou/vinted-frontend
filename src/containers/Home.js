@@ -10,6 +10,7 @@ const Home = () => {
   const [displayOrder, setDisplayOrder] = useState("asc");
   const [state, setState] = useState({ values: [0, 500] });
   const [searchInput, setSearchInput] = useState("");
+  const [rangeFilter, setRangeFilter] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,6 +34,8 @@ const Home = () => {
       <Search
         state={state}
         setState={setState}
+        rangeFilter={rangeFilter}
+        setRangeFilter={setRangeFilter}
         displayOrder={displayOrder}
         setDisplayOrder={setDisplayOrder}
         searchInput={searchInput}

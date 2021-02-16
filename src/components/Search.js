@@ -25,7 +25,7 @@ const Search = ({
       <div className="input-search">
         <input
           type="text"
-          class="search-input"
+          className="search-input"
           value={searchInput}
           onChange={(event) => {
             handleChangeSearchInput(event);
@@ -48,14 +48,13 @@ const Search = ({
           <div className="min-max-range"> {state.values[0].toFixed(0)} €</div>
           <div className="min-max-range"> {state.values[1].toFixed(0)}€</div>
         </output>
-
+        <div></div>
         <Range
           step={5}
           min={0}
           max={500}
-          allowOverlap={true}
-          values={state.values}
           onChange={(values) => setState({ values })}
+          values={state.values}
           renderTrack={({ props, children }) => (
             <div
               {...props}
@@ -94,7 +93,7 @@ const Search = ({
       </div>
 
       <div className="display-order">
-        <span>Trier par prix</span>
+        <span>Trier par prix </span>
         <label className="switch">
           <input type="checkbox" onChange={handleDisplaySort} />
           <span className="slider round"></span>

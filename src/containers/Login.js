@@ -1,12 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 const Login = ({ setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const history = useHistory();
+
   const [displayError, setDisplayError] = useState();
+  const history = useHistory();
+  const location = useLocation();
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -27,8 +29,11 @@ const Login = ({ setUser }) => {
       );
       if (response.data.token) {
         setUser(response.data.token);
+        alert("kljlkj");
 
-        history.push("/");
+        history.push(
+          location.state && location.state.fromPublish ? "/publish" : "/"
+        );
       } else {
         setDisplayError("something went wrong, please try again");
       }
