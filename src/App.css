@@ -358,6 +358,14 @@ input:checked + .slider:before {
   display: flex;
   flex-direction: column;
 }
+.publish-loaded-image {
+}
+.publish-loaded-image img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  object-position: center;
+}
 
 /*------------------------------------------------------*/
 /*-------------------------FOOTER-----------------------*/

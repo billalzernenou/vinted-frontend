@@ -6,11 +6,19 @@ import { useHistory, Redirect } from "react-router-dom";
 // import Dropzone from "react-dropzone";
 
 const Publish = ({ token }) => {
+  //controlled form states
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [brand, setBrand] = useState("");
+  const [size, setSize] = useState("");
+  const [color, setColor] = useState("");
+  const [condition, setCondition] = useState("");
   const [picture, setPicture] = useState("");
+  const [location, setLocation] = useState("");
+
+  const [loadedImages, setLoadedImages] = useState();
+  // roure states
   const History = useHistory();
 
   const handleSubmit = async (event) => {
@@ -25,10 +33,10 @@ const Publish = ({ token }) => {
         formData.append("product_description", description);
         formData.append("picture", picture);
         formData.append("brand", brand);
-        formData.append("size", "24");
-        formData.append("condition", "qskldfhlqskd");
-        formData.append("color", "qksjldq");
-        formData.append("location", "kjhkljh");
+        formData.append("size", size);
+        formData.append("condition", condition);
+        formData.append("color", color);
+        formData.append("location", location);
         console.log(picture);
 
         const response = await axios.post(
@@ -47,7 +55,7 @@ const Publish = ({ token }) => {
       console.log(error);
     }
   };
-
+  // handle events functions
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
@@ -62,7 +70,20 @@ const Publish = ({ token }) => {
   };
   const handlePictureChange = (event) => {
     setPicture(event.target.files[0]);
-    // console.log(event);
+
+    // URL.revokeObjectURL();
+  };
+  const handleColorChange = (event) => {
+    setColor(event.target.value);
+  };
+  const handleConditionChange = (event) => {
+    setCondition(event.target.value);
+  };
+  const handleSizeChange = (event) => {
+    setSize(event.target.value);
+  };
+  const handleLocationChange = (event) => {
+    setLocation(event.target.value);
   };
   return token ? (
     <div className="publish-offer-form">
@@ -90,7 +111,7 @@ const Publish = ({ token }) => {
         ></textarea>
         <input
           placeholder="price"
-          type="text"
+          type="number"
           value={price}
           onChange={(event) => {
             handlePriceChange(event);
@@ -98,19 +119,58 @@ const Publish = ({ token }) => {
         />
         <input
           placeholder="brand"
-          type="brand"
+          type="text"
           value={brand}
           onChange={(event) => {
             handleBrandChange(event);
           }}
         />
         <input
+          placeholder="size"
+          type="text"
+          value={size}
+          onChange={(event) => {
+            handleSizeChange(event);
+          }}
+        />
+        <input
+          placeholder="color"
+          type="text"
+          value={color}
+          onChange={(event) => {
+            handleColorChange(event);
+          }}
+        />
+        <input
+          placeholder="condition"
+          type="text"
+          value={condition}
+          onChange={(event) => {
+            handleConditionChange(event);
+          }}
+        />
+        <input
+          placeholder="location"
+          type="text"
+          value={location}
+          onChange={(event) => {
+            handleLocationChange(event);
+          }}
+        />
+        <input
           placeholder="picture"
           type="file"
+          onClick={(event) => {
+            setLoadedImages(URL.createObjectURL(event.target.files[0]));
+            console.log("dkljfqsldkfjsqdf");
+          }}
           onChange={(event) => {
             handlePictureChange(event);
           }}
         />
+        <div className="publish-loaded-image">
+          <img src={loadedImages} alt={`${name}`} />
+        </div>
         {/* <Dropzone onDrop={this.handlePictureChange}>
           Drop your file here
         </Dropzone> */}
