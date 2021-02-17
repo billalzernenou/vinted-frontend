@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
 import { useHistory } from "react-router-dom";
-import Cookies from "js-cookie";
 
 const Header = ({ userToken, setUser, setUserId }) => {
   const History = useHistory();
@@ -42,7 +41,7 @@ const Header = ({ userToken, setUser, setUserId }) => {
             </button>
           )}
 
-          <Link to={Cookies.get("userToken") ? "/publish" : "/login"}>
+          <Link to={"/publish"}>
             <button className="explore-button header-buttons">
               Vends tes articles
             </button>

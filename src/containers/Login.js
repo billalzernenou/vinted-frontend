@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, Redirect } from "react-router-dom";
 
 const Login = ({ setUser, setUserId }) => {
   const [email, setEmail] = useState("");
@@ -9,6 +9,7 @@ const Login = ({ setUser, setUserId }) => {
   const [displayError, setDisplayError] = useState();
   const history = useHistory();
   const location = useLocation();
+  console.log(location);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -31,13 +32,31 @@ const Login = ({ setUser, setUserId }) => {
         setUser(response.data.token);
         setUserId(response.data._id);
 
-        history.push(
-          location.state && location.state.fromPublish
-            ? "/publish"
-            : // : location.state.fromPayement
-              // ? "/payement"
-              "/"
-        );
+        // <Redirect
+        //   to={{
+        //     pathname:
+        //       location.state && location.state.fromPublish
+        //         ? "/publish"
+        //         : location.state.fromPayement
+        //         ? "/payement"
+        //         : "/",
+        //     state: { title: location.title, price: location.price },
+        //   }}
+        // />;
+
+        history.push({
+          pathname:
+            location.state && location.state.fromPublish
+              ? "/publish"
+              : location.state.fromPayement
+              ? "/payement"
+              : "/",
+          state: { title: location.title, price: location.price },
+        });
+
+        // history.push(
+        //   location.state && location.state.fromPublish ? "/publish" : "/"
+        // );
       } else {
         setDisplayError("something went wrong, please try again");
       }

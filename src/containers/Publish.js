@@ -37,7 +37,6 @@ const Publish = ({ token }) => {
         formData.append("condition", condition);
         formData.append("color", color);
         formData.append("location", location);
-        console.log(picture);
 
         const response = await axios.post(
           "https://vinted-server.herokuapp.com/offer/publish",
@@ -162,7 +161,6 @@ const Publish = ({ token }) => {
           type="file"
           onClick={(event) => {
             setLoadedImages(URL.createObjectURL(event.target.files[0]));
-            console.log("dkljfqsldkfjsqdf");
           }}
           onChange={(event) => {
             handlePictureChange(event);

@@ -33,7 +33,16 @@ const Payement = ({ userIdToken }) => {
       </div>
     </div>
   ) : (
-    <Redirect to={{ pathname: "login", state: { fromPayement: true } }} />
+    <Redirect
+      to={{
+        pathname: "login",
+        state: {
+          fromPayement: true,
+          title: title,
+          price: price,
+        },
+      }}
+    />
   );
 };
 
