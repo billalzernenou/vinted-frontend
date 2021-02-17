@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Search from "../components/Search";
 import Hero from "../components/Hero";
+import OnLoading from "../components/OnLoading";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -29,7 +30,7 @@ const Home = () => {
   }, [displayOrder, rangeFilter.values, searchInput]);
 
   return isLoading ? (
-    "is Loading"
+    <OnLoading />
   ) : (
     <div className="home">
       <div className="container">

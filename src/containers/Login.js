@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useHistory, useLocation, Redirect } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 const Login = ({ setUser, setUserId }) => {
   const [email, setEmail] = useState("");

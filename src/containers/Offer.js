@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import OnLoading from "../components/OnLoading";
 
 const Offer = () => {
   const { id } = useParams();
@@ -26,7 +27,7 @@ const Offer = () => {
   }, [id]);
 
   return isLoading ? (
-    "is Loading"
+    <OnLoading />
   ) : (
     <div className="offer-container">
       <div className="product container">
