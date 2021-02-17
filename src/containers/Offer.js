@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
 const Offer = () => {
@@ -75,7 +75,17 @@ const Offer = () => {
             </div>
           </div>
           <div className="cart-validate">
-            <button className="validate-button">Acheter</button>
+            <Link
+              to={{
+                pathname: "/payement",
+                state: {
+                  title: data.product_name,
+                  price: data.product_price,
+                },
+              }}
+            >
+              <button className="validate-button">Acheter</button>
+            </Link>
           </div>
         </div>
       </div>

@@ -9,9 +9,14 @@ import Signup from "./containers/Signup";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useState } from "react";
 import Cookies from "js-cookie";
+import Payement from "./containers/Payement";
 
 function App() {
+  //token authentification
   const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
+  const [userIdToken, setUserIdToken] = useState(
+    Cookies.get("userIdToken") || null
+  );
 
   const setUser = (token) => {
     if (token) {
@@ -23,11 +28,21 @@ function App() {
       setUserToken(null);
     }
   };
+  const setUserId = (idToken) => {
+    if (idToken) {
+      //if token exist add cookie to the browser and update userToken state
+      Cookies.set("userIdToken", idToken, { expires: 7 });
+      setUserIdToken(idToken);
+    } else {
+      Cookies.remove("userIdToken");
+      setUserIdToken(null);
+    }
+  };
 
   return (
     <div className="App">
       <Router>
-        <Header userToken={userToken} setUser={setUser} />
+        <Header userToken={userToken} setUser={setUser} setUserId={setUserId} />
 
         <Switch>
           <Route path="/offer/:id">
@@ -37,10 +52,13 @@ function App() {
             <Publish token={userToken} />
           </Route>
           <Route path="/login">
-            <Login setUser={setUser} />
+            <Login setUser={setUser} setUserId={setUserId} />
           </Route>
           <Route path="/Signup">
-            <Signup setUser={setUser} />
+            <Signup setUser={setUser} setUserId={setUserId} />
+          </Route>
+          <Route path="/payement">
+            <Payement userIdToken={userIdToken} />
           </Route>
           <Route path="/">
             <Home />

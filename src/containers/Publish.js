@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
-import Cookies from "js-cookie";
+
 // import DropFile from "../components/MyDropzone";
 import { useHistory, Redirect } from "react-router-dom";
-import Dropzone from "react-dropzone";
+// import Dropzone from "react-dropzone";
 
 const Publish = ({ token }) => {
   const [name, setName] = useState("");

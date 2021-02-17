@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import logo from "../images/logo.png";
 import { useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
-import Hero from "./Hero";
 
-const Header = ({ userToken, setUser }) => {
+const Header = ({ userToken, setUser, setUserId }) => {
   const History = useHistory();
   const handleLogout = () => {
     setUser(null);
+    setUserId(null);
     History.push("/login");
   };
   return (

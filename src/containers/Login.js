@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useHistory, useLocation } from "react-router-dom";
 
-const Login = ({ setUser }) => {
+const Login = ({ setUser, setUserId }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -29,10 +29,14 @@ const Login = ({ setUser }) => {
       );
       if (response.data.token) {
         setUser(response.data.token);
-        alert("kljlkj");
+        setUserId(response.data._id);
 
         history.push(
-          location.state && location.state.fromPublish ? "/publish" : "/"
+          location.state && location.state.fromPublish
+            ? "/publish"
+            : // : location.state.fromPayement
+              // ? "/payement"
+              "/"
         );
       } else {
         setDisplayError("something went wrong, please try again");
